@@ -61,6 +61,11 @@ dataActivity<- rbind(dataActivityTrain, dataActivityTest)
 
 dataFeatures<- rbind(dataFeaturesTrain, dataFeaturesTest)
 
+#******************************************************************
+#Step 2.-Extracts only the measurements on the mean and standard deviation for each measurement.
+#******************************************************************
+
+
 #set names to variables
 
 names(dataSubject)<-c("subject")
@@ -89,15 +94,19 @@ Data<-subset(Data,select=selectedNames)
 
 str(Data)
 
-#Read descriptive activity names from “activity_labels.txt”
+#******************************************************************
+#Step 3. Uses descriptive activity names to name the activities in the data set
+#******************************************************************
 
 activityLabels <- read.table(file.path(path_rf, "activity_labels.txt"),header = FALSE)
 
 #check
 head(Data$activity,30)
 
-#Appropriately labels the data set with descriptive variable names
-
+#******************************************************************
+#Step 4. Appropriately labels the data set with descriptive variable names.
+#******************************************************************
+#*
 names(Data)<-gsub("^t", "time", names(Data))
 names(Data)<-gsub("^f", "frequency", names(Data))
 names(Data)<-gsub("Acc", "Accelerometer", names(Data))
@@ -108,7 +117,9 @@ names(Data)<-gsub("BodyBody", "Body", names(Data))
 #check
 names(Data)
 
-#Creates a second,independent tidy data set and output it
+#******************************************************************
+#Step 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+#******************************************************************
 
 
 library(dplyr)
