@@ -108,7 +108,7 @@ names(Data)<-gsub("BodyBody", "Body", names(Data))
 #check
 names(Data)
 
-#Creates a second,independent tidy data set and ouput it
+#Creates a second,independent tidy data set and output it
 
 
 library(dplyr)
